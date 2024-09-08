@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 interface Props {
 	title: string;
 }
@@ -6,45 +8,34 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
-	<body>
-		<slot />
-	</body>
+	<body class="bg-gruvbox-bg text-gruvbox-fg">
+		<header class="bg-gruvbox-bg-dark p-4">
+			<nav class="container mx-auto flex justify-between items-center">
+				<a href="/" class="text-2xl font-bold text-gruvbox-orange">Gruvbox Theme</a>
+				<ul class="flex space-x-4">
+					<li><a href="/colors" class="text-gruvbox-aqua hover:text-gruvbox-yellow">Colors</a></li>
+						<li><a href="/install" class="text-gruvbox-aqua hover:text-gruvbox-yellow">Install</a></li>
+						<li><a href="/showcase" class="text-gruvbox-aqua hover:text-gruvbox-yellow">Showcase</a></li>
+					</ul>
+				</nav>
+			</header>
+			<main class="container mx-auto p-4">
+				<slot />
+			</main>
+			<footer class="bg-gruvbox-bg-dark p-4 mt-8">
+				<div class="container mx-auto text-center text-gruvbox-gray">
+					&copy; 2024 gruvboxthemes.com. All rights reserved.
+				</div>
+			</footer>
+		</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
